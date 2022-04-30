@@ -37,6 +37,12 @@ const Billing = () => {
 
   const [sdkReady, setSdkReady] = useState(false)
 
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
   useEffect(() => {
     const addPaypalScript = async () => {
       const { data: clientId } = await axios.get(
@@ -72,11 +78,11 @@ const Billing = () => {
     }
   }, [])
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault()
   }
 
-  const successPaymentHandler = (payment) => {
+  const successPaymentHandler = async (payment) => {
     console.log(payment)
 
     const data = {
@@ -88,6 +94,17 @@ const Billing = () => {
     }
 
     dispatch(addPayment(data))
+
+    await axios.post(
+      `/api/contacts/invoice`,
+      {
+        plan: plan,
+        amount: amount,
+        transactionId: payment.id,
+        date: payment.create_time,
+      },
+      config
+    )
 
     toast.success('Payment Successful')
 
