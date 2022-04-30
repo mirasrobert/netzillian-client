@@ -22,4 +22,4 @@ store
       document.getElementById('root')
     )
   })
-  .catch((e) => console.log(e))
+  .catch((e) => console.error(e))
