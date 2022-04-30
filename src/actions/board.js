@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
+
 import { setAlert } from './alert'
 import {
   CLEAR_BOARD,
@@ -97,6 +99,7 @@ export const addBoard = (formData, history) => async (dispatch) => {
 
     history.push(`/board/${res.data._id}`)
   } catch (err) {
+    toast.error(err.response.data.error.message || 'Server Error')
     dispatch({
       type: BOARD_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -164,6 +167,7 @@ export const addList = (formData) => async (dispatch) => {
 
     dispatch(getActivity())
   } catch (err) {
+    toast.error(err.response.data.error.message || 'Server Error')
     dispatch({
       type: BOARD_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -380,6 +384,8 @@ export const addMember = (userId) => async (dispatch) => {
 
     dispatch(getActivity())
   } catch (err) {
+    toast.error(err.response.data.error.message || 'Server Error')
+
     dispatch({
       type: BOARD_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
