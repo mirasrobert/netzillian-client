@@ -3,7 +3,8 @@ import React from 'react'
 const Copyright = () => {
   return (
     <p className='copyright'>
-      Copyright © Digital Space | DETA {new Date().getFullYear()}.
+      Copyright © {process.env.REACT_APP_NAME} | DETA {new Date().getFullYear()}
+      .
     </p>
   )
 }
