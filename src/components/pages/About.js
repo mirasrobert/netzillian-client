@@ -77,7 +77,7 @@ const About = () => {
             align='center'>
             Imagine being able to take that whiteboard with you wherever you go
             on your smartphone, and being able to access it from any computer
-            via the web. That's DETA from DIGITAL SPACE for you!
+            via the web. That's DETA from {process.env.REACT_APP_NAME} for you!
           </Typography>
         </Container>
       </section>
