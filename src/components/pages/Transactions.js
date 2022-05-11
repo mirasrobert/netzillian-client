@@ -31,7 +31,7 @@ const Transactions = () => {
   const [loading, setLoading] = useState(true)
   const [tableData, setTableData] = useState([])
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(3)
+  const [rowsPerPage, setRowsPerPage] = useState(2)
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -138,7 +138,7 @@ const Transactions = () => {
                       </TableBody>
                     </Table>
                     <TablePagination
-                      rowsPerPageOptions={[3, 10]}
+                      rowsPerPageOptions={[2, 5, 10]}
                       component='div'
                       count={tableData.length}
                       rowsPerPage={rowsPerPage}
