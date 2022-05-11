@@ -150,7 +150,7 @@ const Pricing = () => {
               </Card>
             </Grid>
             <Grid item xs={12} md={4}>
-              {/* STANDARD TIER */}
+              {/* PRO TIER */}
               <Card sx={{ minWidth: 275 }}>
                 <CardContent>
                   <Typography
@@ -158,7 +158,7 @@ const Pricing = () => {
                     color='text.secondary'
                     gutterBottom={true}
                     align='center'>
-                    <strong>STANDARD</strong>
+                    <strong>PRO</strong>
                   </Typography>
                   <Typography variant='h5' component='div' align='center'>
                     ₱ <span className={classes.fontLg}>250</span> / MO
@@ -235,7 +235,7 @@ const Pricing = () => {
               </Card>
             </Grid>
             <Grid item xs={12} md={4}>
-              {/* PREMIUM TIER */}
+              {/* BUSINESS TIER */}
               <Card sx={{ minWidth: 275 }}>
                 <CardContent>
                   <Typography
@@ -243,7 +243,7 @@ const Pricing = () => {
                     color='text.secondary'
                     gutterBottom={true}
                     align='center'>
-                    <strong>PREMIUM</strong>
+                    <strong>BUSINESS</strong>
                   </Typography>
                   <Typography variant='h5' component='div' align='center'>
                     ₱ <span className={classes.fontLg}>500</span> / MO
