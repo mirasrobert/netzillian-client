@@ -13,6 +13,7 @@ import Board from './components/pages/Board'
 import Alert from './components/other/Alert'
 import Billing from './components/pages/Billing'
 import Checkout from './components/pages/Checkout'
+import Transactions from './components/pages/Transactions'
 
 import Drawer from './components/layouts/Drawer'
 
@@ -50,6 +51,7 @@ const App = () => {
             <Route exact path='/terms' component={Terms} />
             <Route exact path='/billing' component={Billing} />
             <Route exact path='/checkout' component={Checkout} />
+            <Route exact path='/transactions' component={Transactions} />
           </Switch>
         </Fragment>
       </Router>

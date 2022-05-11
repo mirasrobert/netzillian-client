@@ -25,6 +25,9 @@ const Navbar = () => {
         <Link style={{ marginRight: '10px' }} to='/billing'>
           Plans
         </Link>
+        <Link style={{ marginRight: '10px' }} to='/transactions'>
+          Transactions
+        </Link>
         <Link to='/' onClick={() => dispatch(logout())}>
           Logout
         </Link>
