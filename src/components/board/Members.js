@@ -16,8 +16,8 @@ const Members = () => {
   const [users, setUsers] = useState([])
   const boardMembers = useSelector((state) => state.board.board.members)
   const searchOptions =
-    users &&
-    Object.values(users).filter((user) =>
+    users.length > 0 &&
+    users.filter((user) =>
       boardMembers.find((boardMember) => boardMember.user === user._id)
         ? false
         : true
@@ -34,7 +34,10 @@ const Members = () => {
         },
       }
 
-      const { data } = await axios.get(`/api/users/${newInputValue}`, config)
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/users/${newInputValue}`,
+        config
+      )
 
       const search = data?.slice(0, 4)
 
