@@ -56,9 +56,10 @@ const About = () => {
                 variant='subtitle1'
                 align='left'>
                 <strong>DETA</strong>, a collaboration tool from{' '}
-                <strong>Digital Space</strong>, arranges your work into boards.
-                DETA tells you what's being worked on, who's working on what,
-                and where something is in the process all in one glance.
+                <strong>{process.env.REACT_APP_NAME}</strong>, arranges your
+                work into boards. DETA tells you what's being worked on, who's
+                working on what, and where something is in the process all in
+                one glance.
               </Typography>
               <Typography variant='subtitle1' align='left'>
                 Consider a whiteboard covered in lists of sticky notes, each one
