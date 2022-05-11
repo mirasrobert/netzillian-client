@@ -75,7 +75,15 @@ const Transactions = () => {
             <h1 className='mb-3'>Transactions</h1>
 
             {loading ? (
-              <CircularProgress className='dashboard-loading' />
+              <div
+                style={{
+                  minHeigt: '100vh',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <CircularProgress className='dashboard-loading' />
+              </div>
             ) : (
               <Card className='mb-5'>
                 <CardContent>
@@ -91,26 +99,36 @@ const Transactions = () => {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {tableData
-                          .slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage
-                          )
-                          .map((row, index) => (
-                            <TableRow key={row.transactionId}>
-                              <TableCell component='th' scope='row'>
-                                {row.transactionId}
-                              </TableCell>
-                              <TableCell align='right'>{row.plan}</TableCell>
-                              <TableCell align='right'>{row.amount}</TableCell>
-                              <TableCell align='right'>
-                                {row.paymentMethod}
-                              </TableCell>
-                              <TableCell align='right'>
-                                {row.createdAt}
-                              </TableCell>
-                            </TableRow>
-                          ))}
+                        {tableData.length === 0 ? (
+                          <TableRow>
+                            <TableCell align='center' colSpan={5}>
+                              No transactions found
+                            </TableCell>
+                          </TableRow>
+                        ) : (
+                          tableData
+                            .slice(
+                              page * rowsPerPage,
+                              page * rowsPerPage + rowsPerPage
+                            )
+                            .map((row, index) => (
+                              <TableRow key={row.transactionId}>
+                                <TableCell component='th' scope='row'>
+                                  {row.transactionId}
+                                </TableCell>
+                                <TableCell align='right'>{row.plan}</TableCell>
+                                <TableCell align='right'>
+                                  {row.amount}
+                                </TableCell>
+                                <TableCell align='right'>
+                                  {row.paymentMethod}
+                                </TableCell>
+                                <TableCell align='right'>
+                                  {row.createdAt}
+                                </TableCell>
+                              </TableRow>
+                            ))
+                        )}
 
                         {emptyRows > 0 && (
                           <TableRow style={{ height: 53 * emptyRows }}>
