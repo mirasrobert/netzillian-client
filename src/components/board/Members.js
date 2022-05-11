@@ -15,11 +15,14 @@ const Members = () => {
   const [inputValue, setInputValue] = useState('')
   const [users, setUsers] = useState([])
   const boardMembers = useSelector((state) => state.board.board.members)
-  const searchOptions = users.filter((user) =>
-    boardMembers.find((boardMember) => boardMember.user === user._id)
-      ? false
-      : true
-  )
+  const searchOptions =
+    users &&
+    Object.values(users).filter((user) =>
+      boardMembers.find((boardMember) => boardMember.user === user._id)
+        ? false
+        : true
+    )
+
   const dispatch = useDispatch()
 
   const handleInputValue = async (newInputValue) => {
@@ -73,7 +76,9 @@ const Members = () => {
             onInputChange={(e, newInputValue) =>
               handleInputValue(newInputValue)
             }
-            options={searchOptions}
+            options={
+              searchOptions && searchOptions.length > 0 ? searchOptions : []
+            }
             getOptionLabel={(member) => member.email}
             className='search-member'
             renderInput={(params) => (
