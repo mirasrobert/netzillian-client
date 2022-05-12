@@ -126,14 +126,20 @@ const Navbar = () => {
               <NavLink className={classes.textDecoration} to='/terms'>
                 <Button>Terms</Button>
               </NavLink>
-              <NavLink className={classes.textDecoration} to='/login'>
-                <Button
-                  className={`${classes.primaryBgBlue} ${classes.White}`}
-                  color='primary'
-                  variant='contained'>
-                  Sign In
-                </Button>
-              </NavLink>
+              {!isAuthenticated ? (
+                <NavLink className={classes.textDecoration} to='/login'>
+                  <Button
+                    className={`${classes.primaryBgBlue} ${classes.White}`}
+                    color='primary'
+                    variant='contained'>
+                    Sign In
+                  </Button>
+                </NavLink>
+              ) : (
+                <NavLink className={classes.textDecoration} to='/dashboard'>
+                  <Button>Dashboard</Button>
+                </NavLink>
+              )}
             </div>
           </Toolbar>
         </AppBar>

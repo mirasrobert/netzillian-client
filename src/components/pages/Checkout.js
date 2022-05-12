@@ -83,10 +83,12 @@ const Billing = () => {
   }
 
   const successPaymentHandler = async (payment) => {
+    let paymentPlan = plan?.charAt(0).toUpperCase() + plan?.slice(1)
+
     const data = {
       paymentMethod: paymentMethod,
       amount: amount,
-      plan: plan,
+      plan: paymentPlan.toString(),
       transactionId: payment.id,
       currency: payment.purchase_units[0].amount.currency_code,
     }
@@ -146,7 +148,12 @@ const Billing = () => {
 
                           <Grid container spacing={2}>
                             <Grid item sm={6}>
-                              <span>{plan} Plan</span>
+                              <span>
+                                {`${
+                                  plan?.charAt(0).toUpperCase() + plan?.slice(1)
+                                }`}{' '}
+                                Plan
+                              </span>
                             </Grid>
                             <Grid item sm={6}>
                               ₱{amount}
