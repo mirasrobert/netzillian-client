@@ -114,9 +114,22 @@ const Transactions = () => {
                             .map((row, index) => (
                               <TableRow key={row.transactionId}>
                                 <TableCell component='th' scope='row'>
-                                  {row.transactionId}
+                                  <span className='font-bold'>
+                                    {row.transactionId}
+                                  </span>
                                 </TableCell>
-                                <TableCell align='right'>{row.plan}</TableCell>
+                                <TableCell align='right'>
+                                  <span
+                                    className={`${
+                                      row.plan == 'Business'
+                                        ? 'badge-primary'
+                                        : row.plan == 'Pro'
+                                        ? 'badge-success'
+                                        : 'badge-danger'
+                                    }`}>
+                                    {row.plan}
+                                  </span>
+                                </TableCell>
                                 <TableCell align='right'>
                                   {row.amount}
                                 </TableCell>
