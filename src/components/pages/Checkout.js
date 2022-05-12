@@ -83,10 +83,12 @@ const Billing = () => {
   }
 
   const successPaymentHandler = async (payment) => {
-    let paymentPlan = plan?.charAt(0).toUpperCase() + plan?.slice(1)
+    let paymentPlan = plan?.charAt(0).toUpperCase() + plan?.slice(1) // Make Uppercase First Letter
+    let payMethod =
+      paymentMethod?.charAt(0).toUpperCase() + paymentMethod?.slice(1) // Make Uppercase First Letter
 
     const data = {
-      paymentMethod: paymentMethod,
+      paymentMethod: payMethod.toString(),
       amount: amount,
       plan: paymentPlan.toString(),
       transactionId: payment.id,
