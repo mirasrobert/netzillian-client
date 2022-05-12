@@ -45,7 +45,7 @@ const Contact = () => {
     event.preventDefault()
 
     axios
-      .post('/api/contacts', formData)
+      .post(`${process.env.REACT_APP_API_URL}/api/contacts`, formData)
       .then((res) => {
         toast.success(res.data.message)
 

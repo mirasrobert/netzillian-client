@@ -83,8 +83,6 @@ const Billing = () => {
   }
 
   const successPaymentHandler = async (payment) => {
-    console.log(payment)
-
     const data = {
       paymentMethod: paymentMethod,
       amount: amount,
@@ -96,7 +94,7 @@ const Billing = () => {
     dispatch(addPayment(data))
 
     await axios.post(
-      `/api/contacts/invoice`,
+      `${process.env.REACT_APP_API_URL}/api/contacts/invoice`,
       {
         plan: plan,
         amount: amount,
