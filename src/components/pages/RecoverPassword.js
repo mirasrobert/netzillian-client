@@ -19,7 +19,7 @@ import Container from '@material-ui/core/Container'
 import Copyright from '../other/Copyright'
 import useStyles from '../../utils/formStyles'
 
-const Login = () => {
+const Login = ({ match }) => {
   const [isEmailLoading, setIsEmailLoading] = useState(false)
 
   const classes = useStyles()
@@ -27,11 +27,12 @@ const Login = () => {
   const history = useHistory()
 
   const [formData, setFormData] = useState({
-    email: '',
+    password: '',
+    password_confirmation: '',
   })
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
 
-  const { email } = formData
+  const { password, password_confirmation } = formData
 
   useEffect(() => {
     document.title = `${process.env.REACT_APP_NAME} | Forgot password`
@@ -56,25 +57,41 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/reset-password`,
-        {
-          email,
-        },
-        config
-      )
+      // Check if passwords match
+      if (password !== password_confirmation) {
+        toast.error('Passwords do not match')
+      } else {
+        const res = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/reset-password/reset`,
+          {
+            email: match.params.email,
+            token: match.params.token,
+            password: password,
+          },
+          config
+        )
 
-      toast.success(res.data.message)
+        toast.success(res.data.message)
 
-      // Clear Input
-      setFormData({
-        email: '',
-      })
+        // Clear Input
+        setFormData({
+          password: '',
+          password_confirmation: '',
+        })
+
+        // Redirect to login
+        history.push('/login')
+      }
 
       setIsEmailLoading(false)
     } catch (error) {
-      toast.error('Something went wrong. Please try again.')
+      toast.error(error.response.data.message)
       setIsEmailLoading(false)
+      // Clear Input
+      setFormData({
+        password: '',
+        password_confirmation: '',
+      })
     }
   }
 
@@ -86,23 +103,34 @@ const Login = () => {
           DETA
         </Typography>
         <Typography component='h1' variant='h5'>
-          Reset your password
-        </Typography>
-        <Typography component='p' variant='body2' align='center'>
-          An e-mail will be send to you with instructions on how to reset your
-          password.
+          Change Password
         </Typography>
         <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
           <TextField
+            type='password'
             variant='outlined'
             margin='normal'
             required
             fullWidth
-            label='Email Address'
-            name='email'
-            autoComplete='email'
+            label='New password'
+            name='password'
+            autoComplete='password'
             autoFocus
-            value={email}
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+
+          <TextField
+            type='password'
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
+            label='Confirm password'
+            name='password_confirmation'
+            autoComplete='password_confirmation'
+            autoFocus
+            value={password_confirmation}
             onChange={(e) => onChange(e)}
           />
 
