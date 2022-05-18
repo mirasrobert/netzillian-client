@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../../actions/auth'
+import { useSelector } from 'react-redux'
+
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -24,27 +26,42 @@ const Login = () => {
 
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
   })
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
-  const dispatch = useDispatch()
 
-  const { email, password } = formData
+  const { email } = formData
 
   useEffect(() => {
-    document.title = `${process.env.REACT_APP_NAME} | Sign In`
+    document.title = `${process.env.REACT_APP_NAME} | Forgot password`
   }, [])
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    dispatch(login(email, password))
-  }
-
   if (isAuthenticated) {
     history.push('/dashboard')
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/reset-password`,
+        {
+          email,
+        }
+      )
+
+      toast.success(res.data.message)
+
+      // Clear Input
+      setFormData({
+        email: '',
+      })
+    } catch (error) {
+      toast.error('Something went wrong. Please try again.')
+    }
   }
 
   return (
@@ -55,7 +72,11 @@ const Login = () => {
           DETA
         </Typography>
         <Typography component='h1' variant='h5'>
-          Sign in
+          Reset your password
+        </Typography>
+        <Typography component='p' variant='body2' align='center'>
+          An e-mail will be send to you with instructions on how to reset your
+          password.
         </Typography>
         <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
           <TextField
@@ -71,36 +92,18 @@ const Login = () => {
             onChange={(e) => onChange(e)}
           />
 
-          <TextField
-            variant='outlined'
-            margin='normal'
-            required
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            autoComplete='current-password'
-            value={password}
-            onChange={(e) => onChange(e)}
-          />
-
           <Button
             type='submit'
             fullWidth
             variant='contained'
             color='primary'
             className={classes.submit}>
-            Sign In
+            Submit
           </Button>
           <Grid container justify='space-between'>
             <Grid item>
               <Link href='/register' variant='body2'>
                 Don't have an account? Sign Up
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='/forgot-password' variant='body2'>
-                Forgot password?
               </Link>
             </Grid>
           </Grid>

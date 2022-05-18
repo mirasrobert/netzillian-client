@@ -14,6 +14,7 @@ import Alert from './components/other/Alert'
 import Billing from './components/pages/Billing'
 import Checkout from './components/pages/Checkout'
 import Transactions from './components/pages/Transactions'
+import ResetPassword from './components/pages/ResetPassword'
 
 import Drawer from './components/layouts/Drawer'
 
@@ -52,6 +53,7 @@ const App = () => {
             <Route exact path='/billing' component={Billing} />
             <Route exact path='/checkout' component={Checkout} />
             <Route exact path='/transactions' component={Transactions} />
+            <Route exact path='/forgot-password' component={ResetPassword} />
           </Switch>
         </Fragment>
       </Router>
