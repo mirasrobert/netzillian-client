@@ -1,58 +1,76 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Draggable } from 'react-beautiful-dnd';
-import { getCard, editCard } from '../../actions/board';
-import getInitials from '../../utils/getInitials';
+import React, { Fragment, useRef, useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Draggable } from 'react-beautiful-dnd'
+import { getCard, editCard } from '../../actions/board'
+import getInitials from '../../utils/getInitials'
 
-import CardMUI from '@material-ui/core/Card';
-import EditIcon from '@material-ui/icons/Edit';
-import CloseIcon from '@material-ui/icons/Close';
-import SubjectIcon from '@material-ui/icons/Subject';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import { TextField, CardContent, Button, Avatar, Tooltip } from '@material-ui/core';
-import CardModal from './CardModal';
+import CardMUI from '@material-ui/core/Card'
+import EditIcon from '@material-ui/icons/Edit'
+import CloseIcon from '@material-ui/icons/Close'
+import SubjectIcon from '@material-ui/icons/Subject'
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn'
+import AccessTimeIcon from '@material-ui/icons/AccessTime'
+import EventIcon from '@material-ui/icons/Event'
+import moment from 'moment'
+
+import {
+  TextField,
+  CardContent,
+  Button,
+  Avatar,
+  Tooltip,
+} from '@material-ui/core'
+import CardModal from './CardModal'
 
 const Card = ({ cardId, list, index }) => {
-  const [editing, setEditing] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [mouseOver, setMouseOver] = useState(false);
-  const [title, setTitle] = useState('');
-  const [height, setHeight] = useState(0);
-  const [completeItems, setCompleteItems] = useState(0);
-  const cardRef = useRef(null);
+  const [editing, setEditing] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
+  const [mouseOver, setMouseOver] = useState(false)
+  const [title, setTitle] = useState('')
+  const [height, setHeight] = useState(0)
+  const [completeItems, setCompleteItems] = useState(0)
+  const cardRef = useRef(null)
   const card = useSelector((state) =>
     state.board.board.cardObjects.find((object) => object._id === cardId)
-  );
-  const dispatch = useDispatch();
+  )
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getCard(cardId));
-  }, [cardId, dispatch]);
+    dispatch(getCard(cardId))
+  }, [cardId, dispatch])
 
   useEffect(() => {
     if (card) {
-      setTitle(card.title);
+      setTitle(card.title)
       card.checklist &&
         setCompleteItems(
           card.checklist.reduce(
             (completed, item) => (completed += item.complete ? 1 : 0),
             0
           )
-        );
+        )
     }
-  }, [card]);
+  }, [card])
 
   useEffect(() => {
-    cardRef && cardRef.current && setHeight(cardRef.current.clientHeight);
-  }, [list, card, cardRef]);
+    cardRef && cardRef.current && setHeight(cardRef.current.clientHeight)
+  }, [list, card, cardRef])
 
   const onSubmitEdit = async (e) => {
-    e.preventDefault();
-    dispatch(editCard(cardId, { title }));
-    setEditing(false);
-    setMouseOver(false);
-  };
+    e.preventDefault()
+    dispatch(editCard(cardId, { title }))
+    setEditing(false)
+    setMouseOver(false)
+  }
+
+  // Get Date Today
+  var today = new Date()
+  var dd = String(today.getDate()).padStart(2, '0')
+  var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+  var yyyy = today.getFullYear()
+
+  const [dateToday, setDateToday] = useState(mm + '/' + dd + '/' + yyyy)
 
   return !card || (card && card.archived) ? (
     ''
@@ -74,8 +92,7 @@ const Card = ({ cardId, list, index }) => {
               onMouseLeave={() => setMouseOver(false)}
               ref={provided.innerRef}
               {...provided.draggableProps}
-              {...provided.dragHandleProps}
-            >
+              {...provided.dragHandleProps}>
               {mouseOver && !editing && (
                 <Button
                   style={{
@@ -84,35 +101,38 @@ const Card = ({ cardId, list, index }) => {
                     left: '180px',
                     zIndex: 1,
                   }}
-                  onClick={() => setEditing(true)}
-                >
+                  onClick={() => setEditing(true)}>
                   <EditIcon fontSize='small' />
                 </Button>
               )}
               <CardContent
                 onClick={() => {
-                  setOpenModal(true);
-                  setMouseOver(false);
+                  setOpenModal(true)
+                  setMouseOver(false)
                 }}
-                ref={cardRef}
-              >
+                ref={cardRef}>
                 {card.label && card.label !== 'none' && (
-                  <div className='card-label' style={{ backgroundColor: card.label }} />
+                  <div
+                    className='card-label'
+                    style={{ backgroundColor: card.label }}
+                  />
                 )}
                 <p>{card.title}</p>
                 <div className='card-bottom'>
                   <div className='card-bottom-left'>
                     {card.description && (
-                      <SubjectIcon className='description-indicator' fontSize='small' />
+                      <SubjectIcon
+                        className='description-indicator'
+                        fontSize='small'
+                      />
                     )}
                     {card.checklist && card.checklist.length > 0 && (
                       <div
-                        className={`checklist-indicator ${
+                        className={`checklist-indicator ml-3 ${
                           completeItems === card.checklist.length
                             ? 'completed-checklist-indicator'
                             : ''
-                        }`}
-                      >
+                        }`}>
                         <AssignmentTurnedInIcon
                           fontSize='small'
                           className='checklist-indicator-icon'
@@ -120,14 +140,42 @@ const Card = ({ cardId, list, index }) => {
                         {completeItems}/{card.checklist.length}
                       </div>
                     )}
+
+                    {/* GREEN BACKGROUND IF COMPLETED OR DUE DATE TODAY */}
+                    <div
+                      className={`checklist-indicator ${
+                        (card.dueDate &&
+                          moment(dateToday).format('L') ===
+                            moment(card.dueDate).format('L')) ||
+                        card.markAsCompleted
+                          ? 'completed-checklist-indicator'
+                          : ''
+                      }`}>
+                      {/* SHOW ONLY CALENDAR ICON IF HAVE SET DATE */}
+                      {card.startDate || card.dueDate ? (
+                        <EventIcon
+                          fontSize='small'
+                          className='checklist-indicator-icon'
+                        />
+                      ) : null}
+                      {/* CHECK ONLY IF EITHER OF ONE IS NULL */}
+                      {card.startDate && !card.dueDate ? 'Started: ' : null}
+                      {!card.startDate && card.dueDate ? 'Due: ' : null}
+                      {/* FORMAT DATE */}
+                      {card.startDate && moment(card.startDate).format('MMM D')}
+                      {card.dueDate && ' - '}
+                      {card.dueDate && moment(card.dueDate).format('MMM D')}
+                    </div>
                   </div>
                   <div className='card-member-avatars'>
                     {card.members.map((member) => {
                       return (
                         <Tooltip title={member.name} key={member.user}>
-                          <Avatar className='avatar'>{getInitials(member.name)}</Avatar>
+                          <Avatar className='avatar'>
+                            {getInitials(member.name)}
+                          </Avatar>
                         </Tooltip>
-                      );
+                      )
                     })}
                   </div>
                 </div>
@@ -158,24 +206,23 @@ const Card = ({ cardId, list, index }) => {
             </Button>
             <Button
               onClick={() => {
-                setEditing(false);
-                setMouseOver(false);
-                setTitle(card.title);
-              }}
-            >
+                setEditing(false)
+                setMouseOver(false)
+                setTitle(card.title)
+              }}>
               <CloseIcon />
             </Button>
           </div>
         </form>
       )}
     </Fragment>
-  );
-};
+  )
+}
 
 Card.propTypes = {
   cardId: PropTypes.string.isRequired,
   list: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
-};
+}
 
-export default Card;
+export default Card

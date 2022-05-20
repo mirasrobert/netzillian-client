@@ -106,19 +106,19 @@ const Pricing = () => {
                       <li>
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
-                        Up to 10 boards per Workspace
+                        Free 3 boards for your account
                       </li>
                       <li>
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
-                        Unlimited Power-Ups per board
+                        Up to 3 boards lists
                       </li>
                       <li>
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
                         Unlimited storage (10MB/file)
                       </li>
-                      <li>250 Workspace command runs per month</li>
+                      <li>Up to 3 team members per board</li>
                       <li>
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
@@ -196,12 +196,16 @@ const Pricing = () => {
                       className={`${classes.paddingAround} ${classes.textCenter} ${classes.listStyleNone}`}>
                       <li>
                         <CheckIcon fontSize='small' color='primary' />
-                        Many boards to use
+                        5+ team members
                       </li>
                       <li>
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
-                        Advanced checklists
+                        Upgraded your account up to 10 boards
+                      </li>
+                      <li>
+                        <CheckIcon fontSize='small' color='primary' /> Up to 5
+                        lists per board
                       </li>
                       <li>
                         {' '}
@@ -213,7 +217,6 @@ const Pricing = () => {
                         <CheckIcon fontSize='small' color='primary' />
                         Unlimited storage (250MB/file)
                       </li>
-                      <li>250 Workspace command runs per month</li>
                       <li>
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
@@ -280,18 +283,14 @@ const Pricing = () => {
                     <ul
                       className={`${classes.paddingAround} ${classes.textCenter} ${classes.listStyleNone}`}>
                       <li>
+                        {' '}
                         <CheckIcon fontSize='small' color='primary' />
-                        Dashboard view
+                        Unlimited team members per board
                       </li>
                       <li>
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
-                        Timeline view
-                      </li>
-                      <li>
-                        {' '}
-                        <CheckIcon fontSize='small' color='primary' />
-                        Workspace Table view
+                        Unlimited boards for your account
                       </li>
                       <li>
                         {' '}
@@ -300,7 +299,7 @@ const Pricing = () => {
                       </li>
                       <li>
                         <CheckIcon fontSize='small' color='primary' />
-                        Workspace Calendar View
+                        Unlimited lists for you
                       </li>
                       <li>
                         {' '}
@@ -321,6 +320,10 @@ const Pricing = () => {
                         {' '}
                         <CheckIcon fontSize='small' color='primary' />
                         Admin and security features
+                      </li>
+                      <li>
+                        <CheckIcon fontSize='small' color='primary' />
+                        Dashboard view
                       </li>
                     </ul>
                   </div>

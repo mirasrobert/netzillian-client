@@ -70,9 +70,9 @@ const Team = () => {
                     Robert Miras
                   </Typography>
                   <Typography variant='body2' color='text.secondary'>
-                    CEO & Founder of Digital Space. A passionate and creative
-                    person who loves to create and build products. He is a very
-                    good team player with a great team.
+                    CEO & Founder of {process.env.REACT_APP_NAME}. A passionate
+                    and creative person who loves to create and build products.
+                    He is a very good team player with a great team.
                   </Typography>
                 </CardContent>
               </Card>
@@ -110,9 +110,9 @@ const Team = () => {
                     Nathan Calabia
                   </Typography>
                   <Typography variant='body2' color='text.secondary'>
-                    Resource Manager of Digital Space. A cool & calm person that
-                    manages resources capabilities and workload for the
-                    responsible and right people
+                    Resource Manager of {process.env.REACT_APP_NAME}. A cool &
+                    calm person that manages resources capabilities and workload
+                    for the responsible and right people
                   </Typography>
                 </CardContent>
               </Card>
@@ -152,9 +152,10 @@ const Team = () => {
                     JC Nitro
                   </Typography>
                   <Typography variant='body2' color='text.secondary'>
-                    Project Manager of Digital Space. A committed and respectful
-                    person who organized and plan everything clearly to make it
-                    easier for his colleagues to do thier work/task
+                    Project Manager of {process.env.REACT_APP_NAME}. A committed
+                    and respectful person who organized and plan everything
+                    clearly to make it easier for his colleagues to do thier
+                    work/task
                   </Typography>
                 </CardContent>
               </Card>

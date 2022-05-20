@@ -413,6 +413,12 @@ body {
   display: flex;
 }
 
+.card-bottom-left,
+.card-member-avatars {
+  padding-top: 5px;
+  gap: 1.5px;
+}
+
 .board
   .lists
   .list-wrapper
@@ -652,6 +658,10 @@ body {
 
 .mt-5 {
   margin-top: 1.2rem;
+}
+
+.ml-3 {
+  margin-left: 0.9rem;
 }
 
 .center-div {
