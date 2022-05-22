@@ -67,6 +67,9 @@ const Navbar = () => {
               <NavLink className={classes.textDecoration} to='/about'>
                 <Button>About Us</Button>
               </NavLink>
+              <NavLink className={classes.textDecoration} to='/our-product'>
+                <Button>Our Product</Button>
+              </NavLink>
               <NavLink className={classes.textDecoration} to='/pricing'>
                 <Button>Pricing</Button>
               </NavLink>
@@ -113,6 +116,9 @@ const Navbar = () => {
               </NavLink>
               <NavLink className={classes.textDecoration} to='/about'>
                 <Button>About Us</Button>
+              </NavLink>
+              <NavLink className={classes.textDecoration} to='/our-product'>
+                <Button>Our Product</Button>
               </NavLink>
               <NavLink className={classes.textDecoration} to='/pricing'>
                 <Button>Pricing</Button>
