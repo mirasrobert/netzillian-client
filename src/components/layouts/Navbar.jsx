@@ -11,6 +11,8 @@ import {
   Container,
 } from '@material-ui/core'
 
+import logo from '../../assets/img/logo.png'
+
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 import useStyles from '../../styles'
@@ -53,13 +55,16 @@ const Navbar = () => {
         <AppBar position='relative' className={classes.bgWhite}>
           <Toolbar
             className={`${classes.dflex} ${classes.justifyBetween} ${classes.alignCenter}`}>
-            <Typography
-              className={classes.primaryColorBlue}
-              variant='h6'
-              component='div'
-              sx={{ flexGrow: 1 }}>
-              {process.env.REACT_APP_NAME}
-            </Typography>
+            <div className={`${classes.dflex} ${classes.alignCenter}`}>
+              <img src={logo} className='logo' alt='logo' />
+              <Typography
+                className={classes.primaryColorBlue}
+                variant='h6'
+                component='div'
+                sx={{ flexGrow: 1 }}>
+                {process.env.REACT_APP_NAME}
+              </Typography>
+            </div>
             <ul className={`navLinks`}>
               <NavLink className={classes.textDecoration} to='/home'>
                 <Button>Home</Button>
