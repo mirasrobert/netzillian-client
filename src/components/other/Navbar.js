@@ -22,6 +22,9 @@ const Navbar = () => {
         <Link style={{ marginRight: '10px' }} to='/dashboard'>
           Dashboard
         </Link>
+        <Link style={{ marginRight: '10px' }} to='/profile'>
+          Profile
+        </Link>
         <Link style={{ marginRight: '10px' }} to='/billing'>
           Plans
         </Link>

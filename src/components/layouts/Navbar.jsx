@@ -81,9 +81,9 @@ const Navbar = () => {
               <NavLink className={classes.textDecoration} to='/contact'>
                 <Button>Contact Us</Button>
               </NavLink>
-              <NavLink className={classes.textDecoration} to='/team'>
+              {/* <NavLink className={classes.textDecoration} to='/team'>
                 <Button>Our Team</Button>
-              </NavLink>
+              </NavLink> */}
               <NavLink className={classes.textDecoration} to='/terms'>
                 <Button>Terms</Button>
               </NavLink>
@@ -131,9 +131,9 @@ const Navbar = () => {
               <NavLink className={classes.textDecoration} to='/contact'>
                 <Button>Contact Us</Button>
               </NavLink>
-              <NavLink className={classes.textDecoration} to='/team'>
+              {/* <NavLink className={classes.textDecoration} to='/team'>
                 <Button>Our Team</Button>
-              </NavLink>
+              </NavLink> */}
               <NavLink className={classes.textDecoration} to='/terms'>
                 <Button>Terms</Button>
               </NavLink>

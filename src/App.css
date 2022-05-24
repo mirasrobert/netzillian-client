@@ -462,6 +462,20 @@ body {
   background-color: whitesmoke;
 }
 
+.profile-avatar {
+  margin: 10px 0;
+  width: 120px;
+  height: 120px;
+  font-size: 0.8rem;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: #222;
+}
+
 /* ADDITIONAL CUSTOM STYLING */
 .menuBtn {
   display: none;

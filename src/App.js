@@ -17,6 +17,7 @@ import Transactions from './components/pages/Transactions'
 import ResetPassword from './components/pages/ResetPassword'
 import RecoverPassword from './components/pages/RecoverPassword'
 import Product from './components/pages/Product'
+import Profile from './components/pages/Profile'
 
 import Drawer from './components/layouts/Drawer'
 
@@ -57,6 +58,7 @@ const App = () => {
             <Route exact path='/transactions' component={Transactions} />
             <Route exact path='/forgot-password' component={ResetPassword} />
             <Route exact path='/our-product' component={Product} />
+            <Route exact path='/profile' component={Profile} />
             <Route
               exact
               path='/reset/:token/email/:email'
