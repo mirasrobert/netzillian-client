@@ -87,8 +87,12 @@ const Pricing = () => {
                   <CardActions
                     className={`${classes.dflex} ${classes.justifyCenter} ${classes.directionColumn} ${classes.alignCenter}`}>
                     <Link to='/login' className={classes.textDecoration}>
-                      <Button variant='outlined' size='small'>
-                        Try For Free
+                      <Button
+                        variant='contained'
+                        color='primary'
+                        size='small'
+                        className={`${classes.primaryBgBlue} ${classes.White}`}>
+                        Sign Up Now
                       </Button>
                     </Link>
                   </CardActions>
@@ -182,7 +186,11 @@ const Pricing = () => {
                   <CardActions
                     className={`${classes.dflex} ${classes.justifyCenter} ${classes.directionColumn} ${classes.alignCenter}`}>
                     <Link to='/login' className={classes.textDecoration}>
-                      <Button variant='outlined' size='small'>
+                      <Button
+                        variant='contained'
+                        color='primary'
+                        size='small'
+                        className={`${classes.primaryBgBlue} ${classes.White}`}>
                         Sign Up Now
                       </Button>
                     </Link>
@@ -270,7 +278,11 @@ const Pricing = () => {
                   <CardActions
                     className={`${classes.dflex} ${classes.justifyCenter} ${classes.directionColumn} ${classes.alignCenter}`}>
                     <Link to='/login' className={classes.textDecoration}>
-                      <Button variant='outlined' size='small'>
+                      <Button
+                        variant='contained'
+                        color='primary'
+                        size='small'
+                        className={`${classes.primaryBgBlue} ${classes.White}`}>
                         Sign Up Now
                       </Button>
                     </Link>
