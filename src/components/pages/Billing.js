@@ -72,7 +72,7 @@ const Billing = () => {
   useEffect(() => {
     document.title = `${process.env.REACT_APP_NAME} | Billing`
 
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !user) {
       history.push('/login')
     }
   }, [])
@@ -124,7 +124,7 @@ const Billing = () => {
                       value={'pro'}
                       onChange={onChange}
                       checked={formData.plan === 'pro'}
-                      disabled={user.plan === 'pro'}
+                      disabled={user && user.plan === 'pro'}
                     />
                     <span className='hidden-visually'>
                       Pro - $250 per month, 5 team members, 10 boards, 5 lists
@@ -148,7 +148,7 @@ const Billing = () => {
                       value={'business'}
                       onChange={onChange}
                       checked={formData.plan === 'business'}
-                      disabled={user.plan === 'business'}
+                      disabled={user && user.plan === 'business'}
                     />
                     <span className='hidden-visually'>
                       Business - $500 per month, Unlimited Members, Unlimited

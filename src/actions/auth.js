@@ -69,6 +69,44 @@ export const register =
     }
   }
 
+// Login User using google
+export const loginWithGoogle =
+  ({ email, googleId, avatar, name }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const body = JSON.stringify({ email, googleId, avatar, name })
+
+    try {
+      const res = await axios.post(
+        process.env.REACT_APP_API_URL + '/api/auth/google',
+        body,
+        config
+      )
+
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      })
+
+      dispatch(loadUser())
+    } catch (err) {
+      const errors = err.response.data.errors
+
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, 'error')))
+      }
+
+      dispatch({
+        type: REGISTER_FAIL,
+      })
+    }
+  }
+
 // Login User
 export const login = (email, password) => async (dispatch) => {
   const config = {

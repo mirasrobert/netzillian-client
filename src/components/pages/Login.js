@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../actions/auth'
+import axios from 'axios'
 
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -16,11 +17,36 @@ import Container from '@material-ui/core/Container'
 
 import Copyright from '../other/Copyright'
 import useStyles from '../../utils/formStyles'
+import GoogleLoginButton from '../auth/GoogleLoginButton'
+
+import { gapi } from 'gapi-script'
 
 const Login = () => {
   const classes = useStyles()
 
   const history = useHistory()
+
+  const [googleClientdId, setGoogleClientdId] = useState(null)
+
+  useEffect(() => {
+    const getGoogleClientId = async () => {
+      const { data: clientId } = await axios.get(
+        process.env.REACT_APP_API_URL + '/api/config/google'
+      )
+
+      setGoogleClientdId(clientId)
+    }
+
+    getGoogleClientId()
+    const start = () => {
+      gapi.client.init({
+        client_id: googleClientdId,
+        scope: 'profile',
+      })
+    }
+
+    if (googleClientdId !== null) gapi.load('client:auth2', start)
+  }, [googleClientdId])
 
   const [formData, setFormData] = useState({
     email: '',
@@ -92,6 +118,15 @@ const Login = () => {
             className={classes.submit}>
             Sign In
           </Button>
+
+          <div className='hr'></div>
+
+          <div className='center-items-vertical  mt-5 mb-5'>
+            {googleClientdId && (
+              <GoogleLoginButton googleClientdId={googleClientdId} />
+            )}
+          </div>
+
           <Grid container justify='space-between'>
             <Grid item>
               <Link href='/register' variant='body2'>
