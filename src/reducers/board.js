@@ -23,50 +23,50 @@ import {
   EDIT_CHECKLIST_ITEM,
   COMPLETE_CHECKLIST_ITEM,
   DELETE_CHECKLIST_ITEM,
-} from '../actions/types';
+} from '../actions/types'
 
 const initialState = {
   boards: [],
   board: null,
   dashboardLoading: true,
   error: {},
-};
+}
 
 export default function (state = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
 
   switch (type) {
     case CLEAR_BOARD:
       return {
         ...state,
         board: null,
-      };
+      }
     case GET_BOARDS:
       return {
         ...state,
         boards: payload,
         dashboardLoading: false,
-      };
+      }
     case RENAME_BOARD:
     case GET_BOARD:
-      // return {
-      //   ...state,
-      //   board: { ...state.board, ...payload },
-      // };
       return {
         ...state,
-        board: { ...payload },
-      };
+        board: { ...state.board, ...payload },
+      }
+    // return {
+    //   ...state,
+    //   board: { ...payload },
+    // };
     case ADD_BOARD:
       return {
         ...state,
         boards: [payload, ...state.boards],
-      };
+      }
     case BOARD_ERROR:
       return {
         ...state,
         error: payload,
-      };
+      }
     case GET_LIST:
       return {
         ...state,
@@ -74,7 +74,7 @@ export default function (state = initialState, action) {
           ...state.board,
           listObjects: [...state.board.listObjects, payload],
         },
-      };
+      }
     case ADD_LIST:
       return {
         ...state,
@@ -82,7 +82,7 @@ export default function (state = initialState, action) {
           ...state.board,
           lists: [...state.board.lists, payload._id],
         },
-      };
+      }
     case ARCHIVE_LIST:
     case RENAME_LIST:
       return {
@@ -93,7 +93,7 @@ export default function (state = initialState, action) {
             list._id === payload._id ? payload : list
           ),
         },
-      };
+      }
     case GET_CARD:
       return {
         ...state,
@@ -101,7 +101,7 @@ export default function (state = initialState, action) {
           ...state.board,
           cardObjects: [...state.board.cardObjects, payload],
         },
-      };
+      }
     case ADD_CARD:
       return {
         ...state,
@@ -113,7 +113,7 @@ export default function (state = initialState, action) {
               : list
           ),
         },
-      };
+      }
     case ADD_CHECKLIST_ITEM:
     case EDIT_CHECKLIST_ITEM:
     case COMPLETE_CHECKLIST_ITEM:
@@ -129,7 +129,7 @@ export default function (state = initialState, action) {
             card._id === payload._id ? payload : card
           ),
         },
-      };
+      }
     case MOVE_CARD:
       return {
         ...state,
@@ -143,23 +143,29 @@ export default function (state = initialState, action) {
               : list
           ),
           cardObjects: state.board.cardObjects.filter(
-            (card) => card._id !== payload.cardId || payload.to._id === payload.from._id
+            (card) =>
+              card._id !== payload.cardId || payload.to._id === payload.from._id
           ),
         },
-      };
+      }
     case DELETE_CARD:
       return {
         ...state,
         board: {
           ...state.board,
-          cardObjects: state.board.cardObjects.filter((card) => card._id !== payload),
+          cardObjects: state.board.cardObjects.filter(
+            (card) => card._id !== payload
+          ),
           listObjects: state.board.listObjects.map((list) =>
             list.cards.includes(payload)
-              ? { ...list, cards: list.cards.filter((card) => card !== payload) }
+              ? {
+                  ...list,
+                  cards: list.cards.filter((card) => card !== payload),
+                }
               : list
           ),
         },
-      };
+      }
     case GET_ACTIVITY:
       return {
         ...state,
@@ -167,7 +173,7 @@ export default function (state = initialState, action) {
           ...state.board,
           activity: payload,
         },
-      };
+      }
     case ADD_MEMBER:
       return {
         ...state,
@@ -175,7 +181,7 @@ export default function (state = initialState, action) {
           ...state.board,
           members: payload,
         },
-      };
+      }
     case MOVE_LIST:
       return {
         ...state,
@@ -183,8 +189,8 @@ export default function (state = initialState, action) {
           ...state.board,
           lists: payload,
         },
-      };
+      }
     default:
-      return state;
+      return state
   }
 }

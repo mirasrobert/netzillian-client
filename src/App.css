@@ -752,9 +752,12 @@ body {
 
 .google-btn {
   background-color: #4285f4 !important;
+  width: 50%;
+  text-align: center !important;
 }
 .google-btn span {
   color: #fff !important;
+  text-align: center !important;
 }
 
 /* Extra small devices (phones, 600px and down) */

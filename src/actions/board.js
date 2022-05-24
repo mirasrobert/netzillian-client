@@ -123,10 +123,11 @@ export const renameBoard = (boardId, formData) => async (dispatch) => {
 
     dispatch(getActivity())
   } catch (err) {
-    dispatch({
-      type: BOARD_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    })
+    console.log(err)
+    // dispatch({
+    //   type: BOARD_ERROR,
+    //   payload: { msg: err.response.statusText, status: err.response.status },
+    // })
   }
 }
 
