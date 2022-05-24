@@ -92,7 +92,7 @@ const Pricing = () => {
                         color='primary'
                         size='small'
                         className={`${classes.primaryBgBlue} ${classes.White}`}>
-                        Sign Up Now
+                        Try For Free
                       </Button>
                     </Link>
                   </CardActions>
