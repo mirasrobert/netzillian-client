@@ -55,6 +55,67 @@ const About = () => {
         </Container>
       </section>
 
+      <section id='mission'>
+        <Container>
+          <Grid container spacing={2} className={classes.paddingY}>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              className={`${classes.dflex} ${classes.justifyCenter} ${classes.directionColumn} ${classes.alignCenter}`}>
+              <Typography
+                className={classes.uppercase}
+                variant='h3'
+                gutterBottom={true}
+                align='center'>
+                Mission
+              </Typography>
+              <Typography
+                className={classes.w75}
+                variant='subtitle1'
+                gutterBottom
+                align='center'>
+                To strive hard with the utmost pleasantness for the quality of
+                the products. Being productive and relevant in most certainties.
+                Collaborate easily with the team for better communication
+                between them and keep on tracks with the projects the team will
+                make.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
+
+      <section id='vision'>
+        <Container>
+          <Grid container spacing={2} className={classes.paddingY}>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              className={`${classes.dflex} ${classes.justifyCenter} ${classes.directionColumn} ${classes.alignCenter}`}>
+              <Typography
+                className={classes.uppercase}
+                variant='h3'
+                gutterBottom={true}
+                align='center'>
+                Vision
+              </Typography>
+              <Typography
+                className={classes.w75}
+                variant='subtitle1'
+                gutterBottom
+                align='center'>
+                Our vision is making the team work organized and efficiently for
+                the best outcome. Building relationship to each team member for
+                the strong bonds that it will make and to help the team in their
+                business throughout the world to bring out their max potential.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
+
       <section id='whyUs' className={classes.paddingY}>
         <Container>
           <Grid container spacing={6}>
@@ -230,67 +291,6 @@ const About = () => {
                   </Typography>
                 </CardContent>
               </Card>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
-
-      <section id='vision'>
-        <Container>
-          <Grid container spacing={2} className={classes.paddingY}>
-            <Grid
-              item
-              xs={12}
-              md={12}
-              className={`${classes.dflex} ${classes.justifyCenter} ${classes.directionColumn} ${classes.alignCenter}`}>
-              <Typography
-                className={classes.uppercase}
-                variant='h3'
-                gutterBottom={true}
-                align='center'>
-                Vision
-              </Typography>
-              <Typography
-                className={classes.w75}
-                variant='subtitle1'
-                gutterBottom
-                align='center'>
-                Our vision is making the team work organized and efficiently for
-                the best outcome. Building relationship to each team member for
-                the strong bonds that it will make and to help the team in their
-                business throughout the world to bring out their max potential.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
-
-      <section id='mission'>
-        <Container>
-          <Grid container spacing={2} className={classes.paddingY}>
-            <Grid
-              item
-              xs={12}
-              md={12}
-              className={`${classes.dflex} ${classes.justifyCenter} ${classes.directionColumn} ${classes.alignCenter}`}>
-              <Typography
-                className={classes.uppercase}
-                variant='h3'
-                gutterBottom={true}
-                align='center'>
-                Mission
-              </Typography>
-              <Typography
-                className={classes.w75}
-                variant='subtitle1'
-                gutterBottom
-                align='center'>
-                To strive hard with the utmost pleasantness for the quality of
-                the products. Being productive and relevant in most certainties.
-                Collaborate easily with the team for better communication
-                between them and keep on tracks with the projects the team will
-                make.
-              </Typography>
             </Grid>
           </Grid>
         </Container>
